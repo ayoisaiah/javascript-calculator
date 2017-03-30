@@ -20,3 +20,5 @@ Build an app that is functionally similar to this: https://codepen.io/FreeCodeCa
 - I can keep chaining mathematical operations together until I hit the equal button, and the calculator will tell me the correct output.
 
 ## My Work
+
+![JavaScript calculator](https://cdn.rawgit.com/ayoisaiah/javascript-calculator/012d4c5f/screenshot.png)
