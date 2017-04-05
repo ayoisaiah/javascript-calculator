@@ -9,18 +9,16 @@ let operation = "";
 let answer;
 let decimalAdded = false;
 
-let operators = ["+", "-", "x", "÷"];
+const operators = ["+", "-", "x", "÷"];
 
 function handleKeyPress (e) {
   const key = e.target.dataset.key;
   const lastChar = operation[operation.length - 1];
 
-  // Prevent = from being recorded
   if (key === "=") {
     return;
   }
 
-  // Allow only one decimal point in the input
   if (key === "." && decimalAdded) {
     return;
   }
@@ -29,20 +27,16 @@ function handleKeyPress (e) {
     decimalAdded = false;
   }
 
-  // If operation is empty and first entry is minus, allow it to be added
   if (operation.length === 0 && key === "-") {
     operation += key;
     input.innerHTML = operation;
     return;
   }
 
-  //  The first entry cannot be an operator except minus
   if (operation.length === 0 && operators.indexOf(key) !== -1) {
     input.innerHTML = operation;
     return;
   }
-
-  // If the last character is an operator, don't allow any other operators to be added immediately afterwards. Instead replace the operator with any other operator that is clicked
 
   if (operators.indexOf(lastChar) !== -1 && operators.indexOf(key) !== -1) {
     operation = operation.replace(/.$/, key);
@@ -73,11 +67,14 @@ function evaluate(e) {
     return;
   }
 
-
   try {
 
+    if (operation[0] === "0" && operation[1] !== "." && operation.length > 1) {
+      operation = operation.slice(1);
+    }
+
     const final = operation.replace(/x/g, "*").replace(/÷/g, "/");
-    answer = eval(final);
+    answer = +(eval(final)).toFixed(5);
 
     if (key === "=") {
       decimalAdded = false;
@@ -103,7 +100,7 @@ function evaluate(e) {
 
 function clearInput (e) {
 
-  if (e.type === "dblclick") {
+  if (e.ctrlKey) {
     operation = "";
     answer = "";
     input.innerHTML = operation;
@@ -117,6 +114,7 @@ function clearInput (e) {
 }
 
 deleteBtn.addEventListener("click", clearInput);
-deleteBtn.addEventListener("dblclick", clearInput);
-keys.forEach((key) => key.addEventListener("click", handleKeyPress));
-keys.forEach((key) => key.addEventListener("click", evaluate));
+keys.forEach(key => {
+  key.addEventListener("click", handleKeyPress);
+  key.addEventListener("click", evaluate);
+});
