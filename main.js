@@ -13,7 +13,7 @@ const operators = ["+", "-", "x", "÷"];
 
 function handleKeyPress (e) {
   const key = e.target.dataset.key;
-  const lastChar = operation[operation.length - 1];
+  const lastChar = operation.pop(); use build in functions
 
   if (key === "=") {
     return;
