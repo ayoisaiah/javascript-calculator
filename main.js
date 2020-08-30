@@ -5,11 +5,12 @@ const result = document.querySelector(".result");
 const deleteBtn = document.querySelector(".delete");
 const keys = document.querySelectorAll(".bottom span");
 
-let operation = "";
-let answer;
-let decimalAdded = false;
+var operation = "";
+var answer;
+var decimalAdded = false;
+// Needless to declare let variables outside any block, better keep them as var
 
-const operators = ["+", "-", "x", "÷"];
+const operators = ["+", "-", "*", "÷"];// Changed x to * throughout, for better user interface
 
 function handleKeyPress (e) {
   const key = e.target.dataset.key;
@@ -45,7 +46,9 @@ function handleKeyPress (e) {
   }
 
   if (key) {
-    if (key === ".") decimalAdded = true;
+    if (key === "."){
+      decimalAdded = true;
+    }
     operation += key;
     input.innerHTML = operation;
     return;
@@ -73,15 +76,14 @@ function evaluate(e) {
       operation = operation.slice(1);
     }
 
-    const final = operation.replace(/x/g, "*").replace(/÷/g, "/");
-    answer = +(eval(final)).toFixed(5);
+    const final = operation.replace(/÷/g, "/");//No need to replace here
+    answer = +(eval(final)).toFixed(7);// Rounding off in standard calculator format 
 
     if (key === "=") {
       decimalAdded = false;
-      operation = `${answer}`;
-      answer = "";
-      input.innerHTML = operation;
-      result.innerHTML = answer;
+      operation="";
+      input.innerHTML = `${answer}`;// No need for extra variable here
+      result.innerHTML = "";
       return;
     }
 
@@ -91,7 +93,7 @@ function evaluate(e) {
     if (key === "=") {
       decimalAdded = false;
       input.innerHTML = `<span class="error">${operation}</span>`;
-      result.innerHTML = `<span class="error">Bad Expression</span>`;
+      result.innerHTML = `<span class="error">Invalid Expression</span>`;
     }
     console.log(e);
   }
