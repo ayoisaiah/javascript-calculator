@@ -22,3 +22,34 @@ Build an app that is functionally similar to this: https://codepen.io/FreeCodeCa
 ## My Work
 
 ![JavaScript calculator](https://cdn.rawgit.com/ayoisaiah/javascript-calculator/012d4c5f/screenshot.png)
+
+## making changes:
+
+# Calculator Project
+
+A simple and interactive calculator built with JavaScript, HTML, and CSS. This calculator performs basic arithmetic operations and is designed for easy integration into web projects.
+
+---
+
+## Features
+
+- Addition, subtraction, multiplication, and division.
+- Clear and reset functionalities.
+- Interactive and responsive UI.
+- Real-time calculation updates.
+
+---
+
+## Demo
+
+![Calculator Demo](https://via.placeholder.com/300x200)  
+*Preview of the calculator interface.*
+
+---
+
+## Installation
+
+   Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/calculator-project.git
+
